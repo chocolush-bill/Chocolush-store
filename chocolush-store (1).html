@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chocolush — Premium Kunafa Chocolate</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Outfit', sans-serif; background: #F9F6F0; color: #2A1A12; }
+
+/* ── KEYFRAMES ── */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  background: rgba(249,246,240,0.85);
+  border-bottom: 1px solid rgba(229,223,213,0.6);
+}
+.nav-inner {
+  max-width: 1400px; margin: 0 auto;
+  padding: 0 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 80px;
+}
+.brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 400; letter-spacing: -0.02em;
+  color: #2A1A12; text-decoration: none; line-height: 1;
+}
+.brand span { color: #D4A373; }
+.nav-links {
+  display: flex; align-items: center; gap: 40px;
+  font-size: 13px; text-transform: uppercase; letter-spacing: 0.18em;
+  color: #2A1A12;
+}
+.nav-links a {
+  text-decoration: none; color: inherit;
+  position: relative; padding-bottom: 2px;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: #2A1A12;
+  transition: width 0.3s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+.cart-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px; text-transform: uppercase; letter-spacing: 0.18em;
+  color: #2A1A12; transition: color 0.2s; position: relative;
+}
+.cart-btn:hover { color: #A67A53; }
+.cart-btn svg { width: 20px; height: 20px; stroke-width: 1.4; }
+.cart-count-pill {
+  position: absolute; top: -8px; right: -8px;
+  background: #A67A53; color: #fff;
+  font-size: 10px; font-weight: 600;
+  width: 18px; height: 18px; border-radius: 50%;
+  display: none; align-items: center; justify-content: center;
+}
+.cart-count-pill.show { display: flex; }
+
+/* ── HERO ── */
+.hero {
+  position: relative; overflow: hidden;
+  min-height: 88vh; display: flex; flex-direction: column; justify-content: flex-end;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+}
+.hero-bg img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(249,246,240,0.25) 0%, rgba(249,246,240,0.5) 50%, rgba(249,246,240,1) 100%);
+}
+.hero-content {
+  position: relative; z-index: 1;
+  max-width: 1400px; width: 100%;
+  margin: 0 auto; padding: 0 48px 112px;
+}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.3em;
+  color: #5C4D44; margin-bottom: 32px;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-eyebrow span { width: 32px; height: 1px; background: rgba(92,77,68,0.6); }
+.hero-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(56px, 8vw, 108px);
+  line-height: 0.92; letter-spacing: -0.03em;
+  color: #2A1A12; max-width: 900px;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+.hero-h1 em { color: #A67A53; font-style: italic; }
+.hero-bottom {
+  margin-top: 56px;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 32px;
+  animation: fadeUp 0.8s 0.2s ease both;
+  flex-wrap: wrap;
+}
+.hero-p {
+  max-width: 420px;
+  font-size: 16px; line-height: 1.7; color: #5C4D44;
+}
+.hero-ctas { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.cta-primary {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #2A1A12; color: #F9F6F0;
+  padding: 16px 32px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  border: none; cursor: pointer; text-decoration: none;
+  transition: background 0.2s;
+}
+.cta-primary:hover { background: #1A100B; }
+.cta-primary svg { width: 16px; height: 16px; transition: transform 0.5s; }
+.cta-primary:hover svg { transform: translateX(4px); }
+.cta-link {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em;
+  color: #2A1A12; text-decoration: none;
+  position: relative; padding-bottom: 2px;
+}
+.cta-link::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: #2A1A12;
+  transition: width 0.3s ease;
+}
+.cta-link:hover::after { width: 100%; }
+
+/* ── SECTION SHARED ── */
+.section { border-top: 1px solid #E5DFD5; }
+.container { max-width: 1400px; margin: 0 auto; padding: 0 48px; }
+
+/* ── PRODUCTS ── */
+.products-section { padding: 96px 0 144px; }
+.products-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 24px; margin-bottom: 96px; flex-wrap: wrap;
+}
+.eyebrow {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.3em;
+  color: #A67A53; margin-bottom: 20px;
+}
+.section-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: clamp(36px, 4.5vw, 60px);
+  letter-spacing: -0.02em; line-height: 1; color: #2A1A12;
+  max-width: 520px;
+}
+.products-desc { max-width: 340px; color: #5C4D44; line-height: 1.7; }
+.products-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+}
+.product-card { display: flex; flex-direction: column; }
+.product-img-wrap {
+  position: relative;
+  aspect-ratio: 4/5; overflow: hidden;
+  background: #EFEBE5;
+}
+.product-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.product-card:hover .product-img-wrap img { transform: scale(1.06); }
+.product-code {
+  position: absolute; top: 16px; left: 16px;
+  background: #F9F6F0;
+  padding: 4px 12px;
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.24em;
+  color: #2A1A12;
+}
+.product-add-img-btn {
+  position: absolute; bottom: 16px; right: 16px;
+  width: 48px; height: 48px;
+  background: #2A1A12; color: #F9F6F0;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: translateY(12px);
+  transition: all 0.5s ease;
+}
+.product-card:hover .product-add-img-btn { opacity: 1; transform: translateY(0); }
+.product-add-img-btn:hover { background: #A67A53; }
+.product-add-img-btn svg { width: 18px; height: 18px; stroke-width: 1.4; }
+.product-info {
+  margin-top: 24px;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
+}
+.product-no {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.22em;
+  color: #A67A53; margin-bottom: 6px;
+}
+.product-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(22px, 2vw, 28px); color: #2A1A12; line-height: 1.15;
+}
+.product-desc {
+  margin-top: 12px; font-size: 14px; color: #5C4D44; line-height: 1.7;
+  max-width: 280px;
+}
+.product-weight {
+  margin-top: 12px; font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.22em; color: #5C4D44;
+}
+.product-price-block { text-align: right; flex-shrink: 0; }
+.product-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; color: #2A1A12; line-height: 1;
+}
+.product-price::before { content: '₹'; font-size: 18px; vertical-align: top; margin-top: 4px; display: inline-block; }
+.add-to-bag {
+  display: block; margin-top: 12px;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.22em;
+  color: #2A1A12; text-decoration: none;
+  position: relative; padding-bottom: 2px;
+  transition: color 0.2s;
+}
+.add-to-bag::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 1px; background: #2A1A12;
+  transition: opacity 0.2s;
+}
+.add-to-bag:hover { color: #A67A53; }
+.add-to-bag:hover::after { background: #A67A53; }
+.add-to-bag.added { color: #A67A53; }
+.add-to-bag.added::after { background: #A67A53; }
+
+/* ── STORY ── */
+.story-section { background: #EFEBE5; padding: 96px 0 144px; }
+.story-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: center; }
+.story-img { aspect-ratio: 4/5; overflow: hidden; }
+.story-img img { width: 100%; height: 100%; object-fit: cover; }
+.story-eyebrow { margin-bottom: 20px; }
+.story-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: clamp(32px, 3.5vw, 56px);
+  line-height: 1.02; letter-spacing: -0.02em; color: #2A1A12;
+}
+.story-body {
+  margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  color: #5C4D44; line-height: 1.7;
+}
+.story-stats {
+  margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  border-top: 1px solid rgba(201,188,170,0.6); padding-top: 32px;
+}
+.stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.24em; color: #A67A53; margin-bottom: 8px; }
+.stat-val { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 1.5vw, 24px); color: #2A1A12; }
+
+/* ── CRAFT ── */
+.craft-section { padding: 96px 0 144px; }
+.craft-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 64px; flex-wrap: wrap; }
+.craft-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+.craft-step { border-top: 1px solid #2A1A12; padding-top: 24px; }
+.craft-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px; line-height: 1; color: #2A1A12;
+}
+.craft-title { margin-top: 24px; font-family: 'Cormorant Garamond', serif; font-size: 24px; color: #2A1A12; }
+.craft-body { margin-top: 12px; font-size: 14px; color: #5C4D44; line-height: 1.7; }
+
+/* ── FOOTER ── */
+footer { background: #2A1A12; color: #F9F6F0; overflow: hidden; }
+.marquee-row { border-bottom: 1px solid rgba(249,246,240,0.1); padding: 24px 0; overflow: hidden; }
+.marquee-track {
+  display: flex; gap: 64px; white-space: nowrap;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 5vw, 60px); font-style: italic;
+  color: rgba(249,246,240,0.9);
+  animation: marquee 18s linear infinite;
+  width: max-content;
+}
+.marquee-track span { color: #D4A373; }
+.footer-grid {
+  display: grid; grid-template-columns: 5fr 3fr 4fr;
+  gap: 48px; padding: 80px 48px 96px; max-width: 1400px; margin: 0 auto;
+}
+.footer-brand { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 48px); line-height: 1; margin-bottom: 24px; }
+.footer-brand span { color: #D4A373; }
+.footer-tagline { color: rgba(249,246,240,0.7); line-height: 1.7; max-width: 340px; font-size: 14px; }
+.footer-col-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.24em; color: #D4A373; margin-bottom: 20px; }
+.footer-addr { color: rgba(249,246,240,0.8); line-height: 1.7; font-size: 14px; }
+.footer-link {
+  display: block; color: #F9F6F0; text-decoration: none;
+  font-size: 18px; line-height: 1;
+  position: relative; padding-bottom: 2px; width: fit-content;
+}
+.footer-link + .footer-link { margin-top: 8px; }
+.footer-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: #F9F6F0; transition: width 0.3s; }
+.footer-link:hover::after { width: 100%; }
+.footer-socials { margin-top: 32px; display: flex; gap: 20px; }
+.footer-socials a {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.22em;
+  color: rgba(249,246,240,0.8); text-decoration: none;
+  position: relative; padding-bottom: 2px;
+}
+.footer-socials a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: rgba(249,246,240,0.8); transition: width 0.3s; }
+.footer-socials a:hover::after { width: 100%; }
+.footer-bottom {
+  border-top: 1px solid rgba(249,246,240,0.1);
+  padding: 24px 48px;
+  max-width: 1400px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.22em;
+  color: rgba(249,246,240,0.5);
+}
+
+/* ── CART OVERLAY ── */
+.cart-overlay {
+  position: fixed; inset: 0; background: rgba(42,26,18,0.55);
+  z-index: 99; opacity: 0; pointer-events: none;
+  transition: opacity 0.35s ease;
+  backdrop-filter: blur(4px);
+}
+.cart-overlay.open { opacity: 1; pointer-events: all; animation: overlayIn 0.35s ease; }
+
+/* ── CART DRAWER ── */
+.cart-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0;
+  width: 420px; background: #F9F6F0;
+  z-index: 100;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex; flex-direction: column;
+}
+.cart-drawer.open { transform: translateX(0); }
+.cart-head {
+  padding: 32px 32px 24px;
+  border-bottom: 1px solid rgba(229,223,213,0.8);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cart-head-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300; color: #2A1A12;
+}
+.cart-close {
+  background: none; border: none; cursor: pointer;
+  color: #5C4D44; transition: color 0.2s;
+  padding: 4px; line-height: 1;
+}
+.cart-close:hover { color: #2A1A12; }
+.cart-close svg { width: 20px; height: 20px; stroke-width: 1.4; }
+.cart-body { flex: 1; overflow-y: auto; padding: 24px 32px; }
+.cart-empty {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; height: 100%; text-align: center;
+  color: rgba(92,77,68,0.5);
+}
+.cart-empty-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.4; }
+.cart-empty p { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: #5C4D44; }
+.cart-item {
+  display: flex; gap: 16px;
+  padding: 20px 0; border-bottom: 1px solid rgba(229,223,213,0.6);
+}
+.cart-item-thumb {
+  width: 72px; height: 72px; flex-shrink: 0;
+  overflow: hidden; background: #EFEBE5;
+}
+.cart-item-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.cart-item-info { flex: 1; }
+.cart-item-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; color: #2A1A12; line-height: 1.2;
+}
+.cart-item-sku {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em;
+  color: #A67A53; margin-top: 4px;
+}
+.cart-item-price { font-size: 15px; color: #2A1A12; margin-top: 8px; font-weight: 500; }
+.cart-item-controls { display: flex; align-items: center; gap: 16px; margin-top: 12px; }
+.qty-ctrl {
+  display: flex; align-items: center; gap: 12px;
+  border: 1px solid rgba(92,77,68,0.2); padding: 4px 12px;
+}
+.qty-ctrl button {
+  background: none; border: none; cursor: pointer;
+  color: #2A1A12; font-size: 16px; line-height: 1;
+  padding: 0; transition: color 0.15s;
+}
+.qty-ctrl button:hover { color: #A67A53; }
+.qty-ctrl span { font-size: 14px; font-weight: 500; min-width: 16px; text-align: center; }
+.remove-btn {
+  background: none; border: none; cursor: pointer;
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em;
+  color: rgba(92,77,68,0.5); transition: color 0.2s;
+}
+.remove-btn:hover { color: #c0392b; }
+.cart-item-subtotal {
+  text-align: right; flex-shrink: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; color: #2A1A12; line-height: 1;
+}
+.cart-foot { padding: 24px 32px 32px; border-top: 1px solid rgba(229,223,213,0.8); }
+.cart-total-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.cart-total-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.15em; color: #5C4D44; }
+.cart-total-val { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: #5C4D44; }
+.cart-grand-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-top: 1px solid rgba(92,77,68,0.15); padding-top: 12px; margin-top: 8px; margin-bottom: 24px;
+}
+.cart-grand-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.15em; color: #2A1A12; font-weight: 500; }
+.cart-grand-val { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #2A1A12; }
+.cart-delivery-note {
+  font-size: 11px; text-align: right; color: #A67A53;
+  margin-bottom: 16px; letter-spacing: 0.05em;
+}
+.btn-checkout {
+  width: 100%; padding: 18px;
+  background: #2A1A12; color: #F9F6F0;
+  border: none; cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em;
+  transition: background 0.2s; margin-bottom: 10px;
+}
+.btn-checkout:hover { background: #1A100B; }
+.btn-wa {
+  width: 100%; padding: 16px;
+  background: #25d366; color: #fff;
+  border: none; cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em;
+  transition: background 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-wa:hover { background: #1db954; }
+.btn-wa svg { width: 16px; height: 16px; }
+
+/* ── ORDER SUCCESS MODAL ── */
+.success-overlay {
+  position: fixed; inset: 0; background: rgba(42,26,18,0.6);
+  z-index: 200; display: none; align-items: center; justify-content: center;
+  padding: 24px; backdrop-filter: blur(6px);
+}
+.success-overlay.show { display: flex; animation: overlayIn 0.3s ease; }
+.success-modal {
+  background: #F9F6F0; width: 100%; max-width: 420px;
+  padding: 40px 36px;
+  animation: fadeUp 0.35s ease both;
+  position: relative;
+}
+.success-icon {
+  width: 56px; height: 56px; background: #2A1A12;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px;
+}
+.success-icon svg { width: 28px; height: 28px; stroke: #F9F6F0; stroke-width: 1.8; }
+.success-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 300; color: #2A1A12;
+  margin-bottom: 8px;
+}
+.success-sub { font-size: 14px; color: #5C4D44; line-height: 1.6; margin-bottom: 28px; }
+.order-id-box {
+  background: #EFEBE5;
+  border: 1px solid #E5DFD5;
+  padding: 20px 24px;
+  margin-bottom: 8px;
+}
+.order-id-label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.28em;
+  color: #A67A53; margin-bottom: 8px;
+}
+.order-id-value {
+  font-family: 'Courier New', monospace;
+  font-size: 20px; color: #2A1A12; font-weight: 700;
+  letter-spacing: 0.04em; word-break: break-all;
+}
+.order-id-hint {
+  font-size: 11px; color: #A67A53; margin-bottom: 24px;
+  letter-spacing: 0.03em;
+}
+.success-actions { display: flex; flex-direction: column; gap: 10px; }
+.btn-copy-id {
+  width: 100%; padding: 14px;
+  background: none; border: 1px solid rgba(92,77,68,0.3);
+  font-family: 'Outfit', sans-serif; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  color: #2A1A12; cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-copy-id:hover { background: #2A1A12; color: #F9F6F0; border-color: #2A1A12; }
+.btn-track-now {
+  width: 100%; padding: 14px;
+  background: #2A1A12; color: #F9F6F0; border: none;
+  font-family: 'Outfit', sans-serif; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  cursor: pointer; transition: background 0.2s;
+}
+.btn-track-now:hover { background: #1A100B; }
+.btn-dismiss {
+  width: 100%; padding: 10px;
+  background: none; border: none;
+  font-family: 'Outfit', sans-serif; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  color: rgba(92,77,68,0.5); cursor: pointer; transition: color 0.2s;
+}
+.btn-dismiss:hover { color: #2A1A12; }
+@media (max-width: 480px) {
+  .success-modal { padding: 32px 24px; }
+  .order-id-value { font-size: 16px; }
+}
+.toast-container { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 200; }
+.toast {
+  background: #2A1A12; color: #F9F6F0;
+  padding: 12px 24px;
+  font-family: 'Outfit', sans-serif; font-size: 13px;
+  letter-spacing: 0.05em;
+  opacity: 0; transform: translateY(8px);
+  transition: all 0.3s ease; white-space: nowrap;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* ── ORDER TRACKING ── */
+.track-section { padding: 96px 0 120px; background: #F9F6F0; }
+.track-wrapper { max-width: 640px; margin: 0 auto; }
+.track-search-card {
+  border: 1px solid #E5DFD5;
+  padding: 48px;
+  background: #fff;
+}
+.track-input-row { display: flex; gap: 0; margin-top: 28px; }
+.track-input {
+  flex: 1;
+  padding: 16px 20px;
+  border: 1px solid rgba(92,77,68,0.25); border-right: none;
+  background: #F9F6F0;
+  font-family: 'Outfit', sans-serif; font-size: 14px; color: #2A1A12;
+  outline: none; letter-spacing: 0.03em;
+}
+.track-input:focus { border-color: #A67A53; background: #fff; }
+.track-input::placeholder { color: rgba(92,77,68,0.4); }
+.track-btn {
+  padding: 16px 28px;
+  background: #2A1A12; color: #F9F6F0;
+  border: none; cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 500;
+  transition: background 0.2s;
+}
+.track-btn:hover { background: #A67A53; }
+
+/* Result card */
+.track-result-card {
+  margin-top: 24px;
+  border: 1px solid #E5DFD5;
+  background: #fff;
+  display: none; overflow: hidden;
+}
+.track-result-card.show { display: block; }
+
+/* Status header */
+.track-status-header {
+  padding: 28px 32px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  flex-wrap: wrap;
+}
+.track-status-header.st-new { background: #FFF8F0; border-bottom: 2px solid #c47c3a; }
+.track-status-header.st-confirmed { background: #EFF6FF; border-bottom: 2px solid #3b82f6; }
+.track-status-header.st-converted { background: #F0FDF4; border-bottom: 2px solid #22c55e; }
+.track-status-header.st-cancelled { background: #FEF2F2; border-bottom: 2px solid #ef4444; }
+.track-status-icon { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.st-new .track-status-icon { background: rgba(196,124,58,0.12); }
+.st-confirmed .track-status-icon { background: rgba(59,130,246,0.12); }
+.st-converted .track-status-icon { background: rgba(34,197,94,0.12); }
+.st-cancelled .track-status-icon { background: rgba(239,68,68,0.1); }
+.track-status-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.22em; margin-bottom: 4px; color: #A67A53; font-weight: 600; }
+.st-confirmed .track-status-label { color: #3b82f6; }
+.st-converted .track-status-label { color: #22c55e; }
+.st-cancelled .track-status-label { color: #ef4444; }
+.track-status-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: #2A1A12; line-height: 1.1; }
+.track-status-msg { font-size: 13px; color: #5C4D44; margin-top: 4px; line-height: 1.5; }
+.track-order-id { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(92,77,68,0.5); font-family: monospace; }
+
+/* Progress stepper */
+.track-stepper { padding: 32px; border-bottom: 1px solid #E5DFD5; }
+.stepper-track {
+  display: flex; align-items: flex-start; gap: 0;
+  position: relative;
+}
+.stepper-step { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; }
+.stepper-connector {
+  position: absolute; top: 16px; left: 50%; right: -50%;
+  height: 2px; background: #E5DFD5; z-index: 0; transition: background 0.4s;
+}
+.stepper-connector.done { background: #2A1A12; }
+.stepper-dot {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 2px solid #E5DFD5;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; color: #C9BCAA;
+  transition: all 0.3s;
+  position: relative; z-index: 2;
+}
+.stepper-step.done .stepper-dot { background: #2A1A12; border-color: #2A1A12; color: #fff; }
+.stepper-step.active .stepper-dot { background: #A67A53; border-color: #A67A53; color: #fff; box-shadow: 0 0 0 4px rgba(166,122,83,0.2); }
+.stepper-step.cancelled .stepper-dot { background: #ef4444; border-color: #ef4444; color: #fff; }
+.stepper-label { margin-top: 10px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: #C9BCAA; text-align: center; line-height: 1.3; }
+.stepper-step.done .stepper-label { color: #2A1A12; font-weight: 600; }
+.stepper-step.active .stepper-label { color: #A67A53; font-weight: 600; }
+.stepper-step.cancelled .stepper-label { color: #ef4444; }
+
+/* Order summary */
+.track-order-summary { padding: 28px 32px; }
+.track-summary-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.24em; color: #A67A53; margin-bottom: 16px; font-weight: 600; }
+.track-item-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0; border-bottom: 1px solid rgba(229,223,213,0.5);
+  gap: 16px;
+}
+.track-item-row:last-of-type { border-bottom: none; }
+.track-item-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #2A1A12; }
+.track-item-qty { font-size: 12px; color: #A67A53; text-transform: uppercase; letter-spacing: 0.12em; }
+.track-item-price { font-size: 15px; color: #2A1A12; font-weight: 500; }
+.track-totals { margin-top: 16px; padding-top: 16px; border-top: 1px solid #E5DFD5; }
+.track-total-row { display: flex; justify-content: space-between; font-size: 13px; color: #5C4D44; padding: 4px 0; }
+.track-total-row.grand { font-size: 16px; color: #2A1A12; font-weight: 600; padding-top: 10px; border-top: 1px solid #E5DFD5; margin-top: 6px; }
+.track-total-row.grand span:last-child { font-family: 'Cormorant Garamond', serif; font-size: 22px; }
+
+/* Not found */
+.track-not-found {
+  margin-top: 16px; padding: 20px 28px;
+  background: #FEF2F2; border: 1px solid rgba(239,68,68,0.2);
+  font-size: 13px; color: #b91c1c; display: none; line-height: 1.5;
+}
+.track-not-found.show { display: block; }
+
+@media (max-width: 768px) {
+  .track-search-card { padding: 28px 20px; }
+  .track-status-header { padding: 20px; }
+  .track-stepper { padding: 24px 20px; }
+  .track-order-summary { padding: 20px; }
+  .stepper-label { font-size: 9px; }
+}
+@media (max-width: 1024px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .craft-grid { grid-template-columns: repeat(2, 1fr); }
+  .story-grid { grid-template-columns: 1fr; }
+  .story-img { max-height: 400px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hero-content { padding: 0 24px 64px; }
+  .container { padding: 0 24px; }
+  .products-grid { grid-template-columns: 1fr; }
+  .craft-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr; padding: 48px 24px; }
+  .footer-bottom { padding: 16px 24px; flex-direction: column; gap: 8px; }
+  .cart-drawer { width: 100%; }
+  .products-header { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">Chocolush<span>.</span></a>
+    <nav class="nav-links">
+      <a href="#collection">Collection</a>
+      <a href="#track">Track Order</a>
+      <a href="#story">Our Story</a>
+      <a href="#craft">The Craft</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="cart-btn" onclick="openCart()" aria-label="Open cart">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 6h18"/><path stroke-linecap="round" stroke-linejoin="round" d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span>Cart</span>
+      <div class="cart-count-pill" id="cartPill">0</div>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1772986236895-432a58374be4?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600" alt="Luxury chocolate texture"/>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span></span>
+      Est. Since 2023 · Kerala
+    </div>
+    <h1 class="hero-h1">Kunafa,<br>wrapped in <em>chocolate</em>.</h1>
+    <div class="hero-bottom">
+      <p class="hero-p">A quiet obsession with butter, pistachio, and crisp gold threads — finished in tempered couverture. Made in tiny batches. Never on shelves.</p>
+      <div class="hero-ctas">
+        <a href="#collection" class="cta-primary">
+          Shop The Collection
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+        </a>
+        <a href="#story" class="cta-link">Read our story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS / COLLECTION -->
+<section id="collection" class="section products-section">
+  <div class="container">
+    <div class="products-header">
+      <div>
+        <div class="eyebrow">The Collection</div>
+        <h2 class="section-h2">Three bars. One obsession.</h2>
+      </div>
+      <p class="products-desc">Each piece is hand-finished the morning it ships. No preservatives. No shortcuts. Cold chain to your door.</p>
+    </div>
+    <div class="products-grid" id="productsGrid">
+      <!-- Static fallback — JS will replace these with live admin products -->
+      <article class="product-card" id="card-KC01">
+        <div class="product-img-wrap">
+          <img src="https://images.pexels.com/photos/11178481/pexels-photo-11178481.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=400" alt="Big Kunafa Chocolate" loading="lazy"/>
+          <div class="product-code">KC01</div>
+          <button class="product-add-img-btn" onclick="addToCart('KC01')" aria-label="Add Big Kunafa Chocolate to cart">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5v14"/></svg>
+          </button>
+        </div>
+        <div class="product-info">
+          <div>
+            <div class="product-no">No. 01</div>
+            <h3 class="product-name">Big Kunafa Chocolate</h3>
+            <p class="product-desc">Rich dark chocolate filled with crispy kunafa and pistachio cream.</p>
+            <div class="product-weight">180 g</div>
+          </div>
+          <div class="product-price-block">
+            <div class="product-price">250</div>
+            <button class="add-to-bag" id="bag-KC01" onclick="addToCart('KC01')">Add to bag</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" id="card-KC02">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1772985192609-5a6d43be131b?crop=entropy&cs=srgb&fm=jpg&q=85&w=400" alt="Med. Kunafa Chocolate" loading="lazy"/>
+          <div class="product-code">KC02</div>
+          <button class="product-add-img-btn" onclick="addToCart('KC02')" aria-label="Add Med. Kunafa Chocolate to cart">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5v14"/></svg>
+          </button>
+        </div>
+        <div class="product-info">
+          <div>
+            <div class="product-no">No. 02</div>
+            <h3 class="product-name">Med. Kunafa Chocolate</h3>
+            <p class="product-desc">Our signature medium bar — perfect balance of crunch and cream.</p>
+            <div class="product-weight">90 g</div>
+          </div>
+          <div class="product-price-block">
+            <div class="product-price">125</div>
+            <button class="add-to-bag" id="bag-KC02" onclick="addToCart('KC02')">Add to bag</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" id="card-KC03">
+        <div class="product-img-wrap">
+          <img src="https://images.pexels.com/photos/11178470/pexels-photo-11178470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=400" alt="Mini Kunafa Bites" loading="lazy"/>
+          <div class="product-code">KC03</div>
+          <button class="product-add-img-btn" onclick="addToCart('KC03')" aria-label="Add Mini Kunafa Bites to cart">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5v14"/></svg>
+          </button>
+        </div>
+        <div class="product-info">
+          <div>
+            <div class="product-no">No. 03</div>
+            <h3 class="product-name">Mini Kunafa Bites</h3>
+            <p class="product-desc">Two-bite wonders with all the flavour of the original.</p>
+            <div class="product-weight">2 pcs</div>
+          </div>
+          <div class="product-price-block">
+            <div class="product-price">40</div>
+            <button class="add-to-bag" id="bag-KC03" onclick="addToCart('KC03')">Add to bag</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK ORDER -->
+<section id="track" class="section track-section">
+  <div class="container">
+    <div class="track-wrapper">
+      <div class="eyebrow" style="margin-bottom:16px;">Order Tracking</div>
+      <h2 class="section-h2" style="font-size:clamp(32px,4vw,48px);margin-bottom:40px;">Track your order.</h2>
+
+      <div class="track-search-card">
+        <p style="font-size:14px;color:#5C4D44;line-height:1.7;">Enter the Order ID you received after placing your order.</p>
+        <div class="track-input-row">
+          <input class="track-input" id="trackInput" type="text" placeholder="e.g. ORD-1234567890123" oninput="clearTrackResult()" />
+          <button class="track-btn" onclick="trackOrder()">Track →</button>
+        </div>
+      </div>
+
+      <div class="track-not-found" id="trackNotFound">
+        No order found with that ID. Double-check and try again — the ID looks like <strong>ORD-1234567890123</strong>.
+      </div>
+
+      <!-- Result card -->
+      <div class="track-result-card" id="trackResultCard">
+        <!-- Status header -->
+        <div id="trackStatusHeader" class="track-status-header">
+          <div style="display:flex;align-items:center;gap:16px;flex:1;">
+            <div class="track-status-icon" id="trackStatusIcon"></div>
+            <div>
+              <div class="track-status-label" id="trackStatusLabel"></div>
+              <div class="track-status-title" id="trackStatusTitle"></div>
+              <div class="track-status-msg" id="trackStatusMsg"></div>
+            </div>
+          </div>
+          <div class="track-order-id" id="trackOrderId"></div>
+        </div>
+
+        <!-- Stepper -->
+        <div class="track-stepper" id="trackStepper"></div>
+
+        <!-- Order summary -->
+        <div class="track-order-summary">
+          <div class="track-summary-title">Order Summary</div>
+          <div id="trackItems"></div>
+          <div class="track-totals" id="trackTotals"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story" class="story-section">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-img">
+        <img src="https://images.pexels.com/photos/36691304/pexels-photo-36691304.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=950&w=940" alt="Traditional Kunafa with pistachio"/>
+      </div>
+      <div>
+        <div class="eyebrow story-eyebrow">The Story</div>
+        <h2 class="story-h2">A Levantine pastry,<br>reimagined in chocolate.</h2>
+        <div class="story-body">
+          <p>Chocolush began at a home kitchen counter in 2023 — one small batch of pistachio-kunafa chocolate for a friend's birthday. The next morning, there were forty orders.</p>
+          <p>Today every bar is still tempered by hand, poured into a boutique mould, and finished with butter-crisped kataifi and whole Aleppo pistachios. We don't stock shelves. We ship what we made that morning.</p>
+        </div>
+        <div class="story-stats">
+          <div>
+            <div class="stat-label">Hand-tempered</div>
+            <div class="stat-val">Every bar</div>
+          </div>
+          <div>
+            <div class="stat-label">Batch</div>
+            <div class="stat-val">Max 120/day</div>
+          </div>
+          <div>
+            <div class="stat-label">Shelf life</div>
+            <div class="stat-val">14 days</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRAFT -->
+<section id="craft" class="section craft-section">
+  <div class="container">
+    <div class="craft-header">
+      <div>
+        <div class="eyebrow">The Craft</div>
+        <h2 class="section-h2">Four quiet steps.<br>Zero shortcuts.</h2>
+      </div>
+      <p style="max-width:320px;color:#5C4D44;line-height:1.7;">A short ritual repeated, every morning, the same way. The recipe is forgettable. The discipline isn't.</p>
+    </div>
+    <div class="craft-grid">
+      <div class="craft-step">
+        <div class="craft-n">01</div>
+        <h3 class="craft-title">Butter &amp; Thread</h3>
+        <p class="craft-body">Kataifi threads are pulled fine and toasted slowly in cultured butter until amber and audibly crisp.</p>
+      </div>
+      <div class="craft-step">
+        <div class="craft-n">02</div>
+        <h3 class="craft-title">Aleppo Pistachio</h3>
+        <p class="craft-body">Whole kernels from the 2024 harvest are stone-milled into a loose praline — never a paste.</p>
+      </div>
+      <div class="craft-step">
+        <div class="craft-n">03</div>
+        <h3 class="craft-title">Tempered by Hand</h3>
+        <p class="craft-body">Single-origin couverture is tabled on marble, brought into perfect crystalline temper, then poured.</p>
+      </div>
+      <div class="craft-step">
+        <div class="craft-n">04</div>
+        <h3 class="craft-title">Finished the Morning of</h3>
+        <p class="craft-body">Bars rest overnight, are hand-wrapped at dawn, and leave the kitchen the morning they ship.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="marquee-row">
+    <div class="marquee-track" aria-hidden="true">
+      <span>Kunafa, wrapped in chocolate.<span> ✦</span></span>
+      <span>Kunafa, wrapped in chocolate.<span> ✦</span></span>
+      <span>Kunafa, wrapped in chocolate.<span> ✦</span></span>
+      <span>Kunafa, wrapped in chocolate.<span> ✦</span></span>
+      <span>Kunafa, wrapped in chocolate.<span> ✦</span></span>
+      <span>Kunafa, wrapped in chocolate.<span> ✦</span></span>
+    </div>
+  </div>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Chocolush<span>.</span></div>
+      <p class="footer-tagline">Small-batch pistachio-kunafa chocolate, tempered by hand in Kerala. We ship cold chain, statewide.</p>
+    </div>
+    <div>
+      <div class="footer-col-label">Visit</div>
+      <p class="footer-addr">Kasaragod, Kerala<br>India — 671 121<br>Tues–Sun, 10am–8pm</p>
+    </div>
+    <div>
+      <div class="footer-col-label">Orders</div>
+      <a href="tel:+919876543210" class="footer-link">+91 98765 43210</a>
+      <a href="mailto:hello@chocolush.in" class="footer-link">hello@chocolush.in</a>
+      <div class="footer-socials">
+        <a href="#">Instagram</a>
+        <a href="https://wa.me/919876543210" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>2025 Chocolush · All rights reserved</div>
+    <div>Handmade · Kerala</div>
+  </div>
+</footer>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer" role="dialog" aria-label="Shopping cart">
+  <div class="cart-head">
+    <div class="cart-head-title">Your Bag</div>
+    <button class="cart-close" onclick="closeCart()" aria-label="Close cart">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">
+        <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 6h18"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </div>
+      <p>Your bag is empty.</p>
+    </div>
+  </div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div id="cartSummary"></div>
+    <!-- Customer info form shown before placing order -->
+    <div id="checkoutForm" style="display:none; margin-bottom:16px;">
+      <div style="border-top:1px solid rgba(229,223,213,0.8);padding-top:16px;margin-bottom:12px;">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.18em;color:#5C4D44;margin-bottom:12px;">Your Details</p>
+        <input id="custName" type="text" placeholder="Your name *" required
+          style="width:100%;padding:12px 16px;border:1px solid rgba(92,77,68,0.25);background:#fff;font-family:'Outfit',sans-serif;font-size:14px;color:#2A1A12;margin-bottom:8px;outline:none;border-radius:0;"/>
+        <input id="custPhone" type="tel" placeholder="WhatsApp number (optional)"
+          style="width:100%;padding:12px 16px;border:1px solid rgba(92,77,68,0.25);background:#fff;font-family:'Outfit',sans-serif;font-size:14px;color:#2A1A12;margin-bottom:8px;outline:none;border-radius:0;"/>
+        <input id="custAddress" type="text" placeholder="Delivery address (optional)"
+          style="width:100%;padding:12px 16px;border:1px solid rgba(92,77,68,0.25);background:#fff;font-family:'Outfit',sans-serif;font-size:14px;color:#2A1A12;outline:none;border-radius:0;"/>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button onclick="cancelCheckout()" style="flex:1;padding:14px;background:none;border:1px solid rgba(92,77,68,0.25);font-family:'Outfit',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:#5C4D44;cursor:pointer;">Back</button>
+        <button onclick="submitCheckout()" style="flex:2;padding:14px;background:#2A1A12;color:#F9F6F0;border:none;font-family:'Outfit',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.18em;cursor:pointer;">Confirm Order →</button>
+      </div>
+      <button onclick="submitWA()" style="width:100%;margin-top:8px;padding:14px;background:#25d366;color:#fff;border:none;font-family:'Outfit',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.18em;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Order via WhatsApp
+      </button>
+    </div>
+    <!-- Default state: just the place order button -->
+    <div id="checkoutActions">
+      <button class="btn-checkout" onclick="showCheckoutForm()">Place Order</button>
+      <button class="btn-wa" onclick="showCheckoutForm()">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Order via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER SUCCESS MODAL -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-modal">
+    <div class="success-icon">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <h2 class="success-h2">Order placed!</h2>
+    <p class="success-sub">We've received your order and will confirm it shortly. Save your Order ID — you'll need it to track your order.</p>
+    <div class="order-id-box">
+      <div class="order-id-label">Your Order ID</div>
+      <div class="order-id-value" id="successOrderId">—</div>
+    </div>
+    <p class="order-id-hint">📋 Screenshot this or copy it below.</p>
+    <div class="success-actions">
+      <button class="btn-copy-id" onclick="copyOrderId()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+        <span id="copyBtnText">Copy Order ID</span>
+      </button>
+      <button class="btn-track-now" onclick="goToTrack()">Track This Order</button>
+      <button class="btn-dismiss" onclick="closeSuccess()">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-container">
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+// ── PRODUCTS — loaded from admin localStorage (choco_store_products) ──
+var PRODUCT_DEFAULTS = [
+  { id: 'default-1', code: 'KC01', name: 'Big Kunafa Chocolate', price: 250, weight: '180 g',
+    description: 'Rich dark chocolate filled with crispy kunafa and pistachio cream.',
+    img: 'https://images.pexels.com/photos/11178481/pexels-photo-11178481.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=400' },
+  { id: 'default-2', code: 'KC02', name: 'Med. Kunafa Chocolate', price: 125, weight: '90 g',
+    description: 'Our signature medium bar — perfect balance of crunch and cream.',
+    img: 'https://images.unsplash.com/photo-1772985192609-5a6d43be131b?crop=entropy&cs=srgb&fm=jpg&q=85&w=400' },
+  { id: 'default-3', code: 'KC03', name: 'Mini Kunafa Bites', price: 40, weight: '2 pcs',
+    description: 'Two-bite wonders with all the flavour of the original.',
+    img: 'https://images.pexels.com/photos/11178470/pexels-photo-11178470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=400' },
+];
+
+// Image map (by code) — can extend as needed
+var IMG_MAP = {
+  KC01: 'https://images.pexels.com/photos/11178481/pexels-photo-11178481.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=400',
+  KC02: 'https://images.unsplash.com/photo-1772985192609-5a6d43be131b?crop=entropy&cs=srgb&fm=jpg&q=85&w=400',
+  KC03: 'https://images.pexels.com/photos/11178470/pexels-photo-11178470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=400',
+};
+
+function loadAdminProducts() {
+  try {
+    var raw = localStorage.getItem('choco_store_products');
+    if (raw) {
+      var parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length) {
+        return parsed.map(function(p) {
+          return {
+            id: p.id || p.code,
+            code: p.code,
+            name: p.name,
+            price: p.price,
+            weight: p.weight || '',
+            description: p.description || '',
+            img: p.img || IMG_MAP[p.code] || 'https://images.pexels.com/photos/11178481/pexels-photo-11178481.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=400',
+          };
+        });
+      }
+    }
+  } catch(e) {}
+  return PRODUCT_DEFAULTS;
+}
+
+var PRODUCTS_ARR = loadAdminProducts();
+// Build lookup map (by code, for cart)
+var PRODUCTS = {};
+PRODUCTS_ARR.forEach(function(p) { PRODUCTS[p.code] = p; });
+
+var cart = {}; // { KC01: qty, ... }
+
+// ── RENDER PRODUCT GRID FROM ADMIN DATA ──
+function renderProductGrid() {
+  var grid = document.getElementById('productsGrid');
+  if (!grid) return;
+  if (!PRODUCTS_ARR.length) {
+    grid.innerHTML = '<p style="color:#5C4D44;padding:40px 0;">No products available right now.</p>';
+    return;
+  }
+  grid.innerHTML = PRODUCTS_ARR.map(function(p, i) {
+    var num = String(i + 1).padStart(2, '0');
+    return '<article class="product-card" id="card-' + p.code + '">'
+      + '<div class="product-img-wrap">'
+      + '<img src="' + p.img + '" alt="' + p.name + '" loading="lazy"/>'
+      + '<div class="product-code">' + p.code + '</div>'
+      + '<button class="product-add-img-btn" onclick="addToCart(\'' + p.code + '\')" aria-label="Add ' + p.name + ' to cart">'
+      + '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5v14"/></svg>'
+      + '</button>'
+      + '</div>'
+      + '<div class="product-info">'
+      + '<div>'
+      + '<div class="product-no">No. ' + num + '</div>'
+      + '<h3 class="product-name">' + p.name + '</h3>'
+      + (p.description ? '<p class="product-desc">' + p.description + '</p>' : '')
+      + (p.weight ? '<div class="product-weight">' + p.weight + '</div>' : '')
+      + '</div>'
+      + '<div class="product-price-block">'
+      + '<div class="product-price">' + p.price + '</div>'
+      + '<button class="add-to-bag" id="bag-' + p.code + '" onclick="addToCart(\'' + p.code + '\')">Add to bag</button>'
+      + '</div>'
+      + '</div>'
+      + '</article>';
+  }).join('');
+}
+
+// ── CART OPEN/CLOSE ──
+function openCart() {
+  document.getElementById('cartDrawer').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── ADD TO CART ──
+function addToCart(sku) {
+  cart[sku] = (cart[sku] || 0) + 1;
+  renderCart();
+  updateBadge();
+  showToast('Added to bag — ' + PRODUCTS[sku].name);
+  var btn = document.getElementById('bag-' + sku);
+  if (btn) { btn.textContent = 'Added ✓'; btn.classList.add('added'); }
+}
+
+function removeFromCart(sku) {
+  delete cart[sku];
+  renderCart();
+  updateBadge();
+  var btn = document.getElementById('bag-' + sku);
+  if (btn) { btn.textContent = 'Add to bag'; btn.classList.remove('added'); }
+}
+
+function changeQty(sku, delta) {
+  var newQty = (cart[sku] || 0) + delta;
+  if (newQty <= 0) { removeFromCart(sku); return; }
+  cart[sku] = newQty;
+  renderCart();
+  updateBadge();
+}
+
+// ── RENDER CART ──
+function renderCart() {
+  var body = document.getElementById('cartBody');
+  var foot = document.getElementById('cartFoot');
+  var summary = document.getElementById('cartSummary');
+  var keys = Object.keys(cart);
+
+  if (!keys.length) {
+    body.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon"><svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 6h18"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 10a4 4 0 0 1-8 0"/></svg></div><p>Your bag is empty.</p></div>';
+    foot.style.display = 'none';
+    return;
+  }
+
+  foot.style.display = 'block';
+  var html = '';
+  var subtotal = 0;
+  keys.forEach(function(sku) {
+    var p = PRODUCTS[sku];
+    var qty = cart[sku];
+    var lineTotal = p.price * qty;
+    subtotal += lineTotal;
+    html += '<div class="cart-item">'
+      + '<div class="cart-item-thumb"><img src="' + p.img + '" alt="' + p.name + '"/></div>'
+      + '<div class="cart-item-info">'
+      + '<div class="cart-item-name">' + p.name + '</div>'
+      + '<div class="cart-item-sku">' + sku + ' · ' + p.weight + '</div>'
+      + '<div class="cart-item-price">₹' + p.price + ' per piece</div>'
+      + '<div class="cart-item-controls">'
+      + '<div class="qty-ctrl">'
+      + '<button onclick="changeQty(\'' + sku + '\',-1)">−</button>'
+      + '<span>' + qty + '</span>'
+      + '<button onclick="changeQty(\'' + sku + '\',1)">+</button>'
+      + '</div>'
+      + '<button class="remove-btn" onclick="removeFromCart(\'' + sku + '\')">Remove</button>'
+      + '</div></div>'
+      + '<div class="cart-item-subtotal">₹' + lineTotal + '</div>'
+      + '</div>';
+  });
+  body.innerHTML = html;
+
+  
+  var grand = subtotal;
+  var totalItems = keys.reduce(function(s, k) { return s + cart[k]; }, 0);
+
+  summary.innerHTML =
+    '<div class="cart-total-row"><span class="cart-total-label">Subtotal (' + totalItems + ' item' + (totalItems > 1 ? 's' : '') + ')</span><span class="cart-total-val">₹' + subtotal + '</span></div>'
+    + '<div class="cart-total-row"><span class="cart-total-label">Delivery</span><span class="cart-total-val">' + (delivery === 0 ? 'Free' : '₹' + delivery) + '</span></div>'
+    + (delivery > 0 ? '<div class="cart-delivery-note">Add ₹' + (500 - subtotal) + ' more for free delivery</div>' : '<div class="cart-delivery-note">🎉 You qualify for free delivery</div>')
+    + '<div class="cart-grand-row"><span class="cart-grand-label">Total</span><span class="cart-grand-val">₹' + grand + '</span></div>';
+}
+
+// ── BADGE ──
+function updateBadge() {
+  var total = Object.values(cart).reduce(function(s, q) { return s + q; }, 0);
+  var pill = document.getElementById('cartPill');
+  pill.textContent = total;
+  if (total > 0) { pill.classList.add('show'); } else { pill.classList.remove('show'); }
+}
+
+// ── CHECKOUT FORM SHOW/HIDE ──
+function showCheckoutForm() {
+  if (!Object.keys(cart).length) return;
+  document.getElementById('checkoutForm').style.display = 'block';
+  document.getElementById('checkoutActions').style.display = 'none';
+  document.getElementById('custName').focus();
+}
+function cancelCheckout() {
+  document.getElementById('checkoutForm').style.display = 'none';
+  document.getElementById('checkoutActions').style.display = 'block';
+}
+
+// ── SHARED ORDER BUILDER ──
+function buildOrder(name, phone) {
+  var keys = Object.keys(cart);
+  var sub = keys.reduce(function(s, k) { return s + PRODUCTS[k].price * cart[k]; }, 0);
+  var del = sub >= 500 ? 0 : 40;
+  var grand = sub + del;
+  var orderId = 'ORD-' + Date.now();
+  var order = {
+    id: orderId,
+    orderedAt: new Date().toISOString(),
+    customerName: name,
+    customerPhone: phone || '',
+    items: keys.map(function(sku) {
+      var p = PRODUCTS[sku];
+      return { sku: sku, name: p.name, price: p.price, qty: cart[sku], lineTotal: p.price * cart[sku] };
+    }),
+    subtotal: sub,
+    delivery: del,
+    total: grand,
+    status: 'new'
+  };
+  return order;
+}
+
+function saveOrder(order) {
+  try {
+    var existing = JSON.parse(localStorage.getItem('choco_store_orders') || '[]');
+    existing.unshift(order);
+    localStorage.setItem('choco_store_orders', JSON.stringify(existing));
+  } catch(e) { console.error('Could not save order', e); }
+}
+
+// ── SUCCESS MODAL ──
+var lastOrderId = '';
+function showSuccess(orderId) {
+  lastOrderId = orderId;
+  document.getElementById('successOrderId').textContent = orderId;
+  document.getElementById('copyBtnText').textContent = 'Copy Order ID';
+  document.getElementById('successOverlay').classList.add('show');
+}
+function closeSuccess() {
+  document.getElementById('successOverlay').classList.remove('show');
+}
+function copyOrderId() {
+  if (!lastOrderId) return;
+  navigator.clipboard.writeText(lastOrderId).then(function() {
+    document.getElementById('copyBtnText').textContent = 'Copied ✓';
+    setTimeout(function() { document.getElementById('copyBtnText').textContent = 'Copy Order ID'; }, 2000);
+  }).catch(function() {
+    // Fallback for older browsers
+    var el = document.createElement('textarea');
+    el.value = lastOrderId;
+    document.body.appendChild(el);
+    el.select(); document.execCommand('copy');
+    document.body.removeChild(el);
+    document.getElementById('copyBtnText').textContent = 'Copied ✓';
+  });
+}
+function goToTrack() {
+  closeSuccess();
+  document.getElementById('trackInput').value = lastOrderId;
+  document.getElementById('track').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(trackOrder, 400);
+}
+
+// ── SUBMIT (save to admin, show Order ID) ──
+function submitCheckout() {
+  var name = (document.getElementById('custName').value || '').trim();
+  if (!name) {
+    document.getElementById('custName').style.borderColor = '#c0392b';
+    document.getElementById('custName').focus();
+    showToast('Please enter your name to continue.');
+    return;
+  }
+  var phone = (document.getElementById('custPhone').value || '').trim();
+  var order = buildOrder(name, phone);
+  saveOrder(order);
+  cart = {}; renderCart(); updateBadge();
+  cancelCheckout();
+  closeCart();
+  showSuccess(order.id);
+}
+
+// ── SUBMIT VIA WHATSAPP ──
+function submitWA() {
+  var name = (document.getElementById('custName').value || '').trim();
+  if (!name) {
+    document.getElementById('custName').style.borderColor = '#c0392b';
+    document.getElementById('custName').focus();
+    showToast('Please enter your name to continue.');
+    return;
+  }
+  var phone = (document.getElementById('custPhone').value || '').trim();
+  var order = buildOrder(name, phone);
+  saveOrder(order);
+
+  var keys = Object.keys(cart);
+  var lines = keys.map(function(sku) {
+    var p = PRODUCTS[sku];
+    return '• ' + p.name + ' (' + sku + ') ×' + cart[sku] + ' = ₹' + (p.price * cart[sku]);
+  }).join('\n');
+
+  var msg = 'Hi Chocolush! I\'d like to place an order:\n\n' + lines
+    + '\n\nSubtotal: ₹' + order.subtotal
+    + '\nDelivery: ' + (order.delivery === 0 ? 'Free' : '₹' + order.delivery)
+    + '\nTotal: ₹' + order.total
+    + '\n\nName: ' + name
+    + (phone ? '\nPhone: ' + phone : '')
+    + '\nOrder ID: ' + order.id
+    + '\n\nPlease confirm!';
+  window.open('https://wa.me/919876543210?text=' + encodeURIComponent(msg), '_blank');
+
+  cart = {}; renderCart(); updateBadge();
+  cancelCheckout();
+  closeCart();
+  showSuccess(order.id);
+  showToast('WhatsApp opened — confirm your order there 🎉');
+}
+
+// ── TOAST ──
+var toastTimer;
+function showToast(msg) {
+  var el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() { el.classList.remove('show'); }, 2500);
+}
+
+// ── ORDER TRACKING ──
+function clearTrackResult() {
+  document.getElementById('trackResultCard').classList.remove('show');
+  document.getElementById('trackNotFound').classList.remove('show');
+}
+
+function trackOrder() {
+  var input = (document.getElementById('trackInput').value || '').trim();
+  var notFound = document.getElementById('trackNotFound');
+  var resultCard = document.getElementById('trackResultCard');
+  notFound.classList.remove('show');
+  resultCard.classList.remove('show');
+  if (!input) return;
+
+  var orders = [];
+  try { orders = JSON.parse(localStorage.getItem('choco_store_orders') || '[]'); } catch(e) {}
+  var order = orders.find(function(o) {
+    return o.id === input || o.id.toUpperCase() === input.toUpperCase();
+  });
+
+  if (!order) { notFound.classList.add('show'); return; }
+
+  var statusConfig = {
+    new:       { stepIdx: 0, icon: '🕐', label: 'Order Received',    title: 'We\'ve got your order!',         msg: 'Your order is in the queue. We\'ll confirm it shortly.',      cls: 'st-new' },
+    confirmed: { stepIdx: 1, icon: '✅', label: 'Order Confirmed',   title: 'Your order is confirmed.',       msg: 'We\'re preparing your Chocolush with care.',                  cls: 'st-confirmed' },
+    converted: { stepIdx: 2, icon: '📦', label: 'Being Prepared',    title: 'Being packed & billed.',         msg: 'Your order is being packed and will be ready to ship soon.', cls: 'st-converted' },
+    cancelled: { stepIdx: -1, icon: '❌', label: 'Cancelled',        title: 'Order cancelled.',               msg: 'This order has been cancelled. Contact us if this is a mistake.', cls: 'st-cancelled' },
+  };
+
+  var cfg = statusConfig[order.status] || statusConfig.new;
+
+  // Status header
+  var header = document.getElementById('trackStatusHeader');
+  header.className = 'track-status-header ' + cfg.cls;
+  document.getElementById('trackStatusIcon').textContent = cfg.icon;
+  document.getElementById('trackStatusLabel').textContent = cfg.label;
+  document.getElementById('trackStatusTitle').textContent = cfg.title;
+  document.getElementById('trackStatusMsg').textContent = cfg.msg;
+  var d = new Date(order.orderedAt);
+  document.getElementById('trackOrderId').innerHTML = order.id + '<br>' + d.toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+
+  // Stepper
+  var steps = [
+    { label: 'Order\nPlaced', icon: '🛍' },
+    { label: 'Confirmed', icon: '✓' },
+    { label: 'Packing', icon: '📦' },
+    { label: 'Ready', icon: '🎁' },
+  ];
+  var activeIdx = cfg.stepIdx;
+  var stepperHtml = '<div class="stepper-track">';
+  steps.forEach(function(s, i) {
+    var cls = '';
+    if (order.status === 'cancelled') { cls = i === 0 ? 'cancelled' : ''; }
+    else if (i < activeIdx) cls = 'done';
+    else if (i === activeIdx) cls = 'active';
+    var connDone = (i < activeIdx && order.status !== 'cancelled') ? 'done' : '';
+    stepperHtml += '<div class="stepper-step ' + cls + '">';
+    if (i < steps.length - 1) stepperHtml += '<div class="stepper-connector ' + connDone + '"></div>';
+    stepperHtml += '<div class="stepper-dot">' + (cls === 'done' ? '✓' : (i + 1)) + '</div>';
+    stepperHtml += '<div class="stepper-label">' + s.label.replace('\n', '<br>') + '</div>';
+    stepperHtml += '</div>';
+  });
+  stepperHtml += '</div>';
+  document.getElementById('trackStepper').innerHTML = stepperHtml;
+
+  // Items
+  var itemsHtml = order.items.map(function(it) {
+    return '<div class="track-item-row">'
+      + '<div><div class="track-item-name">' + it.name + '</div><div class="track-item-qty">Qty: ' + it.qty + '</div></div>'
+      + '<div class="track-item-price">₹' + it.lineTotal + '</div>'
+      + '</div>';
+  }).join('');
+  document.getElementById('trackItems').innerHTML = itemsHtml;
+
+  // Totals
+  document.getElementById('trackTotals').innerHTML =
+    '<div class="track-total-row"><span>Subtotal</span><span>₹' + order.subtotal + '</span></div>'
+    + '<div class="track-total-row"><span>Delivery</span><span>' + '</span></div>'
+    + '<div class="track-total-row grand"><span>Total</span><span>₹' + order.total + '</span></div>';
+
+  resultCard.classList.add('show');
+  resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ── INIT ──
+function init() {
+  renderProductGrid();
+  var ti = document.getElementById('trackInput');
+  if (ti) ti.addEventListener('keydown', function(e) { if (e.key === 'Enter') trackOrder(); });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+
+// Reset name input border on focus
+document.addEventListener('focus', function(e) {
+  if (e.target && e.target.id === 'custName') {
+    e.target.style.borderColor = 'rgba(92,77,68,0.25)';
+  }
+}, true);
+</script>
+</body>
+</html>
